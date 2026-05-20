@@ -1,23 +1,30 @@
 "use client";
 
+import { FiExternalLink } from "react-icons/fi";
 import { useInView } from "../hooks/useInView";
 
 const experiences = [
   {
     role: "Full-Stack Developer",
+    company: "Freelance",
     type: "Part-time",
-    period: "January 2026 – Present",
+    period: "Jan 2026 – Present",
     description:
-      "Contributing as a part-time developer, building and maintaining features across the full stack using modern technologies. Collaborating with team members to deliver scalable, production-ready solutions.",
+      "Building and maintaining full-stack features for clients end-to-end. Delivering scalable, production-ready solutions with modern frameworks and collaborative best practices.",
     tech: ["Next.js", "NestJS", "React", "TypeScript", "PostgreSQL", "Tailwind CSS"],
+    accentColor: "#10b981",
+    badgeColor: "text-emerald-400 border-emerald-500/25 bg-emerald-500/8",
   },
   {
     role: "Full-Stack Developer",
+    company: "Nerve Technologies Inc.",
     type: "Contract",
-    period: "October 2024 – Present",
+    period: "Oct 2024 – Present",
     description:
-      "Engaged as a contractor to design and develop full-stack web applications end-to-end. Built RESTful APIs using Node.js, Express, and NestJS; created responsive UIs with React and Tailwind CSS; and managed data across MongoDB, MySQL, and PostgreSQL databases.",
+      "Designed and developed full-stack web applications end-to-end. Built RESTful APIs with Node.js, Express, and NestJS; crafted responsive UIs with React and Tailwind CSS; managed data across MongoDB, MySQL, and PostgreSQL.",
     tech: ["React", "Node.js", "Express", "MongoDB", "MySQL", "Tailwind CSS", "SCSS"],
+    accentColor: "#3b82f6",
+    badgeColor: "text-blue-400 border-blue-500/25 bg-blue-500/8",
   },
 ];
 
@@ -25,52 +32,88 @@ export default function Experience() {
   const { ref, inView } = useInView(0.1);
 
   return (
-    <section
-      ref={ref}
-      className="px-6 sm:px-10 lg:px-20 py-20"
-    >
-      <div className={`flex items-center gap-4 mb-12 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-        <h2 className="text-3xl font-bold whitespace-nowrap">Experience</h2>
-        <div className="h-px flex-1 bg-gradient-to-r from-[#494848] to-transparent" />
+    <section ref={ref} className="px-6 sm:px-10 lg:px-20 py-24">
+      <div
+        className="flex items-center gap-4 mb-16 transition-all duration-700"
+        style={{
+          opacity: inView ? 1 : 0,
+          transform: inView ? "translateY(0)" : "translateY(20px)",
+        }}
+      >
+        <span className="section-number">01.</span>
+        <h2 className="text-2xl sm:text-3xl font-bold text-[#f1f5f9] whitespace-nowrap">
+          Experience
+        </h2>
+        <div className="h-px flex-1 bg-gradient-to-r from-[#3b82f6]/30 to-transparent" />
       </div>
 
-      <div className="relative pl-8">
+      <div className="relative pl-6 sm:pl-8">
         <div
-          className="absolute left-0 top-0 w-0.5 bg-gradient-to-b from-[#60a5fa] to-[#494848]/30 origin-top transition-transform duration-1000 ease-out"
+          className="absolute left-0 top-0 w-px bg-gradient-to-b from-[#3b82f6] via-[#8b5cf6] to-transparent origin-top transition-transform duration-1000 ease-out"
           style={{
             height: "100%",
             transform: inView ? "scaleY(1)" : "scaleY(0)",
           }}
         />
 
-        <div className="space-y-12">
+        <div className="space-y-6">
           {experiences.map((exp, i) => (
             <div
               key={exp.type}
-              className="relative transition-all duration-700 ease-out"
+              className="relative"
               style={{
-                transitionDelay: inView ? `${200 + i * 200}ms` : "0ms",
                 opacity: inView ? 1 : 0,
-                transform: inView ? "translateX(0)" : "translateX(-24px)",
+                transform: inView ? "translateX(0)" : "translateX(-20px)",
+                transition: `opacity 0.6s cubic-bezier(0.16,1,0.3,1) ${300 + i * 180}ms, transform 0.6s cubic-bezier(0.16,1,0.3,1) ${300 + i * 180}ms`,
               }}
             >
-              <span className="absolute -left-[2.1rem] top-1.5 flex items-center justify-center">
-                <span className={`w-3 h-3 rounded-full bg-[#60a5fa] shadow-[0_0_8px_#60a5fa] ${inView ? "animate-pulse-dot" : ""}`} />
+              {/* Timeline dot */}
+              <span className="absolute -left-6 sm:-left-8 top-6 -translate-x-1/2 flex items-center justify-center">
+                <span
+                  className={`w-2.5 h-2.5 rounded-full ${inView ? "animate-pulse-dot" : ""}`}
+                  style={{
+                    backgroundColor: exp.accentColor,
+                    boxShadow: `0 0 12px ${exp.accentColor}99`,
+                  }}
+                />
               </span>
 
-              <div className="group rounded-2xl border border-gray-200 dark:border-gray-800 bg-white/60 dark:bg-white/5 backdrop-blur-sm p-6 hover:border-[#60a5fa]/40 hover:shadow-lg hover:shadow-[#60a5fa]/5 transition-all duration-300">
+              <div
+                className="group rounded-2xl p-6 sm:p-7 transition-all duration-300 cursor-default"
+                style={{
+                  background: "rgba(255,255,255,0.025)",
+                  border: `1px solid rgba(255,255,255,0.07)`,
+                  borderLeft: `3px solid ${exp.accentColor}40`,
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLDivElement).style.borderColor = `${exp.accentColor}50`;
+                  (e.currentTarget as HTMLDivElement).style.boxShadow = `0 0 32px ${exp.accentColor}0a, 0 8px 32px rgba(0,0,0,0.25)`;
+                  (e.currentTarget as HTMLDivElement).style.transform = "translateY(-2px)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.07)";
+                  (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
+                  (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
+                  (e.currentTarget as HTMLDivElement).style.borderLeft = `3px solid ${exp.accentColor}40`;
+                }}
+              >
                 <div className="flex flex-wrap items-center gap-2 mb-3">
-                  <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-[#494848] text-[#D4D4D4]">
+                  <span className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full border font-mono ${exp.badgeColor}`}>
                     {exp.type}
                   </span>
-                  <span className="text-xs text-gray-400 font-mono">{exp.period}</span>
+                  <span className="text-[11px] text-[#475569] font-mono">{exp.period}</span>
                 </div>
 
-                <h3 className="text-lg font-bold mb-2 group-hover:text-[#60a5fa] transition-colors duration-200">
+                <h3 className="text-base sm:text-lg font-bold text-[#f1f5f9] mb-1 group-hover:text-[#3b82f6] transition-colors duration-200">
                   {exp.role}
                 </h3>
 
-                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+                <div className="flex items-center gap-1.5 mb-4">
+                  <FiExternalLink size={11} className="text-[#475569] shrink-0" />
+                  <span className="text-sm text-[#64748b] font-medium">{exp.company}</span>
+                </div>
+
+                <p className="text-sm text-[#64748b] leading-relaxed mb-5">
                   {exp.description}
                 </p>
 
@@ -78,7 +121,12 @@ export default function Experience() {
                   {exp.tech.map((t) => (
                     <span
                       key={t}
-                      className="text-xs px-2.5 py-0.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-700"
+                      className="text-[11px] px-2.5 py-0.5 rounded-md font-mono"
+                      style={{
+                        background: "rgba(255,255,255,0.04)",
+                        border: "1px solid rgba(255,255,255,0.08)",
+                        color: "#64748b",
+                      }}
                     >
                       {t}
                     </span>

@@ -9,14 +9,25 @@ const navLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#494848] text-[#D4D4D4] px-6 sm:px-10 lg:px-20 py-10">
+    <footer
+      className="px-6 sm:px-10 lg:px-20 py-10"
+      style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
+    >
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-8">
+
           <div>
-            <p className="text-xl font-bold mb-1">
-              <span className="text-[#60a5fa]">J</span>ericho Fernin
+            <a href="#about" className="flex items-center gap-2 group w-fit">
+              <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#3b82f6] to-[#8b5cf6] flex items-center justify-center text-white text-xs font-extrabold shadow-md shadow-[#3b82f6]/15 group-hover:scale-105 transition-transform duration-200">
+                J
+              </span>
+              <span className="text-sm font-semibold text-[#94a3b8]">
+                Jericho Fernin
+              </span>
+            </a>
+            <p className="text-[11px] text-[#475569] font-mono mt-2 ml-9">
+              Full-Stack Developer
             </p>
-            <p className="text-xs text-gray-400">Full-Stack Developer</p>
           </div>
 
           <nav className="flex flex-wrap gap-x-6 gap-y-2">
@@ -24,7 +35,7 @@ export default function Footer() {
               <a
                 key={l.href}
                 href={l.href}
-                className="text-sm text-gray-400 hover:text-[#60a5fa] transition-colors duration-200"
+                className="text-xs text-[#475569] hover:text-[#94a3b8] transition-colors duration-200 font-mono"
               >
                 {l.label}
               </a>
@@ -37,21 +48,26 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="w-9 h-9 flex items-center justify-center rounded-lg bg-white/10 hover:bg-[#60a5fa] transition-colors duration-200"
+              className="w-9 h-9 flex items-center justify-center rounded-lg text-[#475569] hover:text-[#f1f5f9] transition-all duration-200 hover:-translate-y-0.5"
+              style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)" }}
             >
-              <FaGithub size={16} />
+              <FaGithub size={15} />
             </a>
             <a
               href="mailto:ferninjericho07@gmail.com"
               aria-label="Email"
-              className="w-9 h-9 flex items-center justify-center rounded-lg bg-white/10 hover:bg-[#60a5fa] transition-colors duration-200"
+              className="w-9 h-9 flex items-center justify-center rounded-lg text-[#475569] hover:text-[#f1f5f9] transition-all duration-200 hover:-translate-y-0.5"
+              style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)" }}
             >
-              <FaEnvelope size={15} />
+              <FaEnvelope size={14} />
             </a>
           </div>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-white/10 text-center text-xs text-gray-500">
+        <div
+          className="mt-8 pt-6 text-center text-[11px] text-[#334155] font-mono"
+          style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
+        >
           © {new Date().getFullYear()} Jericho Ticar Fernin. All rights reserved.
         </div>
       </div>
