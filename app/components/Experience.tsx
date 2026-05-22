@@ -43,7 +43,7 @@ const experiences: Experience[] = [
       "Participated in code reviews to maintain code quality and enforce best practices.",
       "Developed and managed two landing pages, including a booking platform with PayPal integration.",
       "Assisted in integrating third-party applications such as Neos.",
-      "Currently developing a project management web application with features including issue tracking, sprint planning, and team collaboration.",
+      "Developed a project management web application with features including issue tracking, sprint planning, and team collaboration.",
     ],
     tech: ["React", "Node.js", "Express", "MongoDB", "MySQL", "Tailwind CSS", "SCSS"],
     accentColor: "#3b82f6",
