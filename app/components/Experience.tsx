@@ -3,14 +3,28 @@
 import { FiExternalLink } from "react-icons/fi";
 import { useInView } from "../hooks/useInView";
 
-const experiences = [
+type Experience = {
+  role: string;
+  company: string;
+  type: string;
+  period: string;
+  description?: string;
+  bullets?: string[];
+  tech: string[];
+  accentColor: string;
+  badgeColor: string;
+};
+
+const experiences: Experience[] = [
   {
     role: "Full-Stack Developer",
     company: "Freelance",
     type: "Part-time",
     period: "Jan 2026 – Present",
-    description:
-      "Building and maintaining full-stack features for clients end-to-end. Delivering scalable, production-ready solutions with modern frameworks and collaborative best practices.",
+    bullets: [
+      "Developing a POS system supporting multiple business types, including retail, general stores, and restaurants.",
+      "Implemented scheduled background jobs using BullMQ to automatically delete branches on a specified date, improving data lifecycle management and system automation.",
+    ],
     tech: ["Next.js", "NestJS", "React", "TypeScript", "PostgreSQL", "Tailwind CSS"],
     accentColor: "#10b981",
     badgeColor: "text-emerald-400 border-emerald-500/25 bg-emerald-500/8",
@@ -20,8 +34,17 @@ const experiences = [
     company: "Nerve Technologies Inc.",
     type: "Contract",
     period: "Oct 2024 – Present",
-    description:
-      "Designed and developed full-stack web applications end-to-end. Built RESTful APIs with Node.js, Express, and NestJS; crafted responsive UIs with React and Tailwind CSS; managed data across MongoDB, MySQL, and PostgreSQL.",
+    bullets: [
+      "Collaborated with a development team to design and build multiple full-stack applications from scratch using the MERN stack.",
+      "Implemented role-based access control (RBAC) to manage permissions across multiple user roles.",
+      "Coordinated with design and QA teams to refine application features and ensure usability.",
+      "Contributed to the implementation of a microservices architecture to improve system scalability and maintainability.",
+      "Developed and maintained a messaging API microservice for email delivery (with and without templates), leveraging BullMQ and Redis for background job processing and implementing idempotency keys to prevent duplicate email sends.",
+      "Participated in code reviews to maintain code quality and enforce best practices.",
+      "Developed and managed two landing pages, including a booking platform with PayPal integration.",
+      "Assisted in integrating third-party applications such as Neos.",
+      "Currently developing a project management web application with features including issue tracking, sprint planning, and team collaboration.",
+    ],
     tech: ["React", "Node.js", "Express", "MongoDB", "MySQL", "Tailwind CSS", "SCSS"],
     accentColor: "#3b82f6",
     badgeColor: "text-blue-400 border-blue-500/25 bg-blue-500/8",
@@ -97,6 +120,7 @@ export default function Experience() {
                   (e.currentTarget as HTMLDivElement).style.borderLeft = `3px solid ${exp.accentColor}40`;
                 }}
               >
+                {/* Badge + period */}
                 <div className="flex flex-wrap items-center gap-2 mb-3">
                   <span className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full border font-mono ${exp.badgeColor}`}>
                     {exp.type}
@@ -104,19 +128,39 @@ export default function Experience() {
                   <span className="text-[11px] text-[#475569] font-mono">{exp.period}</span>
                 </div>
 
+                {/* Role */}
                 <h3 className="text-base sm:text-lg font-bold text-[#f1f5f9] mb-1 group-hover:text-[#3b82f6] transition-colors duration-200">
                   {exp.role}
                 </h3>
 
+                {/* Company */}
                 <div className="flex items-center gap-1.5 mb-4">
                   <FiExternalLink size={11} className="text-[#475569] shrink-0" />
                   <span className="text-sm text-[#64748b] font-medium">{exp.company}</span>
                 </div>
 
-                <p className="text-sm text-[#64748b] leading-relaxed mb-5">
-                  {exp.description}
-                </p>
+                {/* Description: paragraph or bullet list */}
+                {exp.description && (
+                  <p className="text-sm text-[#64748b] leading-relaxed mb-5">
+                    {exp.description}
+                  </p>
+                )}
 
+                {exp.bullets && (
+                  <ul className="mb-5 space-y-2">
+                    {exp.bullets.map((b) => (
+                      <li key={b} className="flex items-start gap-2.5 text-sm text-[#64748b] leading-relaxed">
+                        <span
+                          className="mt-[7px] w-1 h-1 rounded-full shrink-0"
+                          style={{ backgroundColor: exp.accentColor }}
+                        />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                {/* Tech chips */}
                 <div className="flex flex-wrap gap-2">
                   {exp.tech.map((t) => (
                     <span
