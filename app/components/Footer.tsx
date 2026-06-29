@@ -25,7 +25,7 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <p className="text-[11px] font-mono" style={{ color: "#B8B2AA" }}>
+        <p className="text-[11px] font-mono" style={{ color: "#7E7870" }}>
           © {new Date().getFullYear()} Jericho Ticar Fernin. All rights reserved.
         </p>
 
@@ -37,9 +37,9 @@ export default function Footer() {
             rel="noopener noreferrer"
             aria-label="GitHub"
             className="w-9 h-9 flex items-center justify-center rounded-lg transition-all duration-200 hover:-translate-y-0.5"
-            style={{ border: "1px solid rgba(0,0,0,0.1)", color: "#6B6560" }}
+            style={{ border: "1px solid rgba(0,0,0,0.1)", color: "#3D3834" }}
             onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#1A1714")}
-            onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#6B6560")}
+            onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#3D3834")}
           >
             <FaGithub size={14} />
           </a>
@@ -47,9 +47,9 @@ export default function Footer() {
             href="mailto:ferninjericho07@gmail.com"
             aria-label="Email"
             className="w-9 h-9 flex items-center justify-center rounded-lg transition-all duration-200 hover:-translate-y-0.5"
-            style={{ border: "1px solid rgba(0,0,0,0.1)", color: "#6B6560" }}
+            style={{ border: "1px solid rgba(0,0,0,0.1)", color: "#3D3834" }}
             onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#1A1714")}
-            onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#6B6560")}
+            onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#3D3834")}
           >
             <FaEnvelope size={13} />
           </a>

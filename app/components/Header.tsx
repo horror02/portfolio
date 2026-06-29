@@ -58,7 +58,7 @@ export default function Header() {
               href={link.href}
               className="text-sm transition-colors duration-200"
               style={{
-                color: activeSection === link.id ? "#1A1714" : "#B8B2AA",
+                color: activeSection === link.id ? "#1A1714" : "#7E7870",
                 fontWeight: activeSection === link.id ? 500 : 400,
               }}
             >
@@ -70,7 +70,7 @@ export default function Header() {
         {/* Available badge */}
         <span
           className="hidden sm:flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs"
-          style={{ borderColor: "rgba(0,0,0,0.12)", color: "#6B6560" }}
+          style={{ borderColor: "rgba(0,0,0,0.12)", color: "#3D3834" }}
         >
           <span
             className="h-1.5 w-1.5 rounded-full"

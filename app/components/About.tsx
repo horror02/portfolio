@@ -50,7 +50,7 @@ export default function About() {
           {/* Greeting */}
           <p
             className="text-xl font-medium mb-2"
-            style={{ ...fade(100), color: "#B8B2AA" }}
+            style={{ ...fade(100), color: "#7E7870" }}
           >
             Hi! I am
           </p>
@@ -76,7 +76,7 @@ export default function About() {
           {/* Bio */}
           <p
             className="text-base sm:text-lg leading-relaxed max-w-lg"
-            style={{ ...fade(300), color: "#6B6560" }}
+            style={{ ...fade(300), color: "#3D3834" }}
           >
             Full-Stack Developer with 1+ year of experience building web
             applications. Specialized in{" "}

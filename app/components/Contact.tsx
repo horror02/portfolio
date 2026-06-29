@@ -64,7 +64,7 @@ export default function Contact() {
     borderRadius: "6px",
   });
 
-  const inputClass = "w-full px-4 py-3 text-sm placeholder:text-[#B8B2AA] focus:outline-none";
+  const inputClass = "w-full px-4 py-3 text-sm placeholder:text-[#7E7870] focus:outline-none";
 
   return (
     <section
@@ -124,10 +124,10 @@ export default function Contact() {
                   className="flex items-center justify-center w-9 h-9 rounded-md shrink-0"
                   style={{ background: "rgba(0,0,0,0.05)" }}
                 >
-                  <Icon size={14} style={{ color: "#6B6560" }} />
+                  <Icon size={14} style={{ color: "#3D3834" }} />
                 </span>
                 <div className="min-w-0">
-                  <p className="text-[10px] font-mono uppercase tracking-widest mb-0.5" style={{ color: "#B8B2AA" }}>
+                  <p className="text-[10px] font-mono uppercase tracking-widest mb-0.5" style={{ color: "#7E7870" }}>
                     {label}
                   </p>
                   <p className="text-sm truncate" style={{ color: "#1A1714" }}>
@@ -162,7 +162,7 @@ export default function Contact() {
                 ✓
               </div>
               <p className="font-serif text-xl font-bold" style={{ color: "#1A1714" }}>Message sent!</p>
-              <p className="text-sm" style={{ color: "#6B6560" }}>
+              <p className="text-sm" style={{ color: "#3D3834" }}>
                 Thanks for reaching out — I'll get back to you soon.
               </p>
               <button
@@ -177,7 +177,7 @@ export default function Contact() {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="block text-[10px] font-mono uppercase tracking-widest" style={{ color: "#B8B2AA" }}>
+                  <label className="block text-[10px] font-mono uppercase tracking-widest" style={{ color: "#7E7870" }}>
                     Name
                   </label>
                   <input
@@ -193,7 +193,7 @@ export default function Contact() {
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <label className="block text-[10px] font-mono uppercase tracking-widest" style={{ color: "#B8B2AA" }}>
+                  <label className="block text-[10px] font-mono uppercase tracking-widest" style={{ color: "#7E7870" }}>
                     Email
                   </label>
                   <input
@@ -211,7 +211,7 @@ export default function Contact() {
               </div>
 
               <div className="space-y-1.5">
-                <label className="block text-[10px] font-mono uppercase tracking-widest" style={{ color: "#B8B2AA" }}>
+                <label className="block text-[10px] font-mono uppercase tracking-widest" style={{ color: "#7E7870" }}>
                   Message
                 </label>
                 <textarea

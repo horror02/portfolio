@@ -83,16 +83,16 @@ export default function Experience() {
               <div className="mb-6 lg:mb-0">
                 <p
                   className="font-serif font-bold leading-none mb-1"
-                  style={{ fontSize: "clamp(2.5rem, 5vw, 3.5rem)", color: "rgba(0,0,0,0.08)" }}
+                  style={{ fontSize: "clamp(2.5rem, 5vw, 3.5rem)", color: "rgba(0,0,0,0.28)" }}
                 >
                   {exp.year}
                 </p>
-                <p className="text-sm mb-3" style={{ color: "#B8B2AA" }}>
+                <p className="text-sm mb-3" style={{ color: "#6A6460" }}>
                   – Present
                 </p>
                 <span
                   className="text-[10px] font-mono tracking-wider px-3 py-1 rounded-full"
-                  style={{ border: "1px solid rgba(0,0,0,0.15)", color: "#6B6560" }}
+                  style={{ border: "1px solid rgba(0,0,0,0.15)", color: "#3D3834" }}
                 >
                   {exp.type}
                 </span>
@@ -118,9 +118,9 @@ export default function Experience() {
                     <li
                       key={b}
                       className="flex items-start gap-3 text-sm leading-relaxed"
-                      style={{ color: "#6B6560" }}
+                      style={{ color: "#3D3834" }}
                     >
-                      <span className="mt-[6px] shrink-0 font-mono text-xs" style={{ color: "#B8B2AA" }}>—</span>
+                      <span className="mt-[6px] shrink-0 font-mono text-xs" style={{ color: "#7E7870" }}>—</span>
                       {b}
                     </li>
                   ))}
