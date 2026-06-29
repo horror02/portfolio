@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -14,9 +14,17 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "700", "800"],
+});
+
 export const metadata: Metadata = {
   title: "Jericho Ticar Fernin",
-  description: "Jericho Ticar Fernin's Portfolio - Full-Stack Developer specializing in MERN stack applications. Explore projects, skills, and experience in building scalable web solutions. Contact for collaboration and opportunities.",
+  description:
+    "Jericho Ticar Fernin's Portfolio - Full-Stack Developer specializing in MERN stack applications. Explore projects, skills, and experience in building scalable web solutions.",
 };
 
 export default function RootLayout({
@@ -25,7 +33,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} h-full antialiased`}
+    >
       <body className="min-h-full flex flex-col">
         <Header />
         {children}

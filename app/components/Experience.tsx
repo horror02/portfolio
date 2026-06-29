@@ -1,53 +1,44 @@
 "use client";
 
-import { FiExternalLink } from "react-icons/fi";
 import { useInView } from "../hooks/useInView";
 
 type Experience = {
   role: string;
   company: string;
   type: string;
+  year: string;
   period: string;
-  description?: string;
-  bullets?: string[];
+  bullets: string[];
   tech: string[];
-  accentColor: string;
-  badgeColor: string;
 };
 
 const experiences: Experience[] = [
   {
     role: "Full-Stack Developer",
-    company: "Freelance",
+    company: "Aevora System",
     type: "Part-time",
+    year: "2026",
     period: "Jan 2026 – Present",
     bullets: [
-      "Developing a POS system supporting multiple business types, including retail, general stores, and restaurants.",
-      "Implemented scheduled background jobs using BullMQ to automatically delete branches on a specified date, improving data lifecycle management and system automation.",
+      "Developing a POS system supporting multiple business types including retail, general stores, and restaurants.",
+      "Implemented scheduled background jobs using BullMQ to automatically delete branches on a specified date, improving data lifecycle management.",
+      "Collaborating with cross-functional teams to implement inventory management, reporting, and AP/AR features with seamless system integration.",
     ],
     tech: ["Next.js", "NestJS", "React", "TypeScript", "PostgreSQL", "Tailwind CSS"],
-    accentColor: "#10b981",
-    badgeColor: "text-emerald-400 border-emerald-500/25 bg-emerald-500/8",
   },
   {
     role: "Full-Stack Developer",
     company: "Nerve Technologies Inc.",
     type: "Contract",
+    year: "2024",
     period: "Oct 2024 – Present",
     bullets: [
       "Collaborated with a development team to design and build multiple full-stack applications from scratch using the MERN stack.",
-      "Implemented role-based access control (RBAC) to manage permissions across multiple user roles.",
-      "Coordinated with design and QA teams to refine application features and ensure usability.",
-      "Contributed to the implementation of a microservices architecture to improve system scalability and maintainability.",
-      "Developed and maintained a messaging API microservice for email delivery (with and without templates), leveraging BullMQ and Redis for background job processing and implementing idempotency keys to prevent duplicate email sends.",
-      "Participated in code reviews to maintain code quality and enforce best practices.",
-      "Developed and managed two landing pages, including a booking platform with PayPal integration.",
-      "Assisted in integrating third-party applications such as Neos.",
-      "Developed a project management web application with features including issue tracking, sprint planning, and team collaboration.",
+      "Implemented role-based access control (RBAC) to manage permissions across multiple user roles; contributed to a microservices architecture rewrite.",
+      "Developed and maintained a messaging API microservice for email delivery, leveraging BullMQ and Redis for background job processing.",
+      "Built a booking platform with PayPal integration; assisted in integrating AI features using Gemini and Claude for automation.",
     ],
     tech: ["React", "Node.js", "Express", "MongoDB", "MySQL", "Tailwind CSS", "SCSS"],
-    accentColor: "#3b82f6",
-    badgeColor: "text-blue-400 border-blue-500/25 bg-blue-500/8",
   },
 ];
 
@@ -55,131 +46,95 @@ export default function Experience() {
   const { ref, inView } = useInView(0.1);
 
   return (
-    <section ref={ref} className="px-6 sm:px-10 lg:px-20 py-24">
+    <section id="experience" ref={ref} className="px-6 sm:px-10 lg:px-14 py-24" style={{ background: "#F5F0E8" }}>
+
+      {/* Section header */}
       <div
         className="flex items-center gap-4 mb-16 transition-all duration-700"
-        style={{
-          opacity: inView ? 1 : 0,
-          transform: inView ? "translateY(0)" : "translateY(20px)",
-        }}
+        style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(16px)" }}
       >
-        <span className="section-number">01.</span>
-        <h2 className="text-2xl sm:text-3xl font-bold text-[#f1f5f9] whitespace-nowrap">
-          Experience
+        <span className="font-mono text-[0.65rem] tracking-[0.18em] uppercase" style={{ color: "#C4472A" }}>
+          01.
+        </span>
+        <h2 className="font-serif text-3xl sm:text-4xl font-bold" style={{ color: "#1A1714" }}>
+          Work
         </h2>
-        <div className="h-px flex-1 bg-gradient-to-r from-[#3b82f6]/30 to-transparent" />
+        <div className="h-px flex-1" style={{ background: "rgba(0,0,0,0.1)" }} />
       </div>
 
-      <div className="relative pl-6 sm:pl-8">
-        <div
-          className="absolute left-0 top-0 w-px bg-gradient-to-b from-[#3b82f6] via-[#8b5cf6] to-transparent origin-top transition-transform duration-1000 ease-out"
-          style={{
-            height: "100%",
-            transform: inView ? "scaleY(1)" : "scaleY(0)",
-          }}
-        />
+      <div className="space-y-0">
+        {experiences.map((exp, i) => (
+          <div
+            key={exp.company}
+            className="transition-all duration-700"
+            style={{
+              opacity: inView ? 1 : 0,
+              transform: inView ? "translateY(0)" : "translateY(24px)",
+              transitionDelay: inView ? `${200 + i * 150}ms` : "0ms",
+            }}
+          >
+            {i > 0 && (
+              <div className="h-px my-12" style={{ background: "rgba(0,0,0,0.08)" }} />
+            )}
 
-        <div className="space-y-6">
-          {experiences.map((exp, i) => (
-            <div
-              key={exp.type}
-              className="relative"
-              style={{
-                opacity: inView ? 1 : 0,
-                transform: inView ? "translateX(0)" : "translateX(-20px)",
-                transition: `opacity 0.6s cubic-bezier(0.16,1,0.3,1) ${300 + i * 180}ms, transform 0.6s cubic-bezier(0.16,1,0.3,1) ${300 + i * 180}ms`,
-              }}
-            >
-              {/* Timeline dot */}
-              <span className="absolute -left-6 sm:-left-8 top-6 -translate-x-1/2 flex items-center justify-center">
+            <div className="grid grid-cols-1 lg:grid-cols-[200px_1px_1fr] gap-0 lg:gap-10">
+
+              {/* Left: year + badge */}
+              <div className="mb-6 lg:mb-0">
+                <p
+                  className="font-serif font-bold leading-none mb-1"
+                  style={{ fontSize: "clamp(2.5rem, 5vw, 3.5rem)", color: "rgba(0,0,0,0.08)" }}
+                >
+                  {exp.year}
+                </p>
+                <p className="text-sm mb-3" style={{ color: "#B8B2AA" }}>
+                  – Present
+                </p>
                 <span
-                  className={`w-2.5 h-2.5 rounded-full ${inView ? "animate-pulse-dot" : ""}`}
-                  style={{
-                    backgroundColor: exp.accentColor,
-                    boxShadow: `0 0 12px ${exp.accentColor}99`,
-                  }}
-                />
-              </span>
+                  className="text-[10px] font-mono tracking-wider px-3 py-1 rounded-full"
+                  style={{ border: "1px solid rgba(0,0,0,0.15)", color: "#6B6560" }}
+                >
+                  {exp.type}
+                </span>
+              </div>
 
-              <div
-                className="group rounded-2xl p-6 sm:p-7 transition-all duration-300 cursor-default"
-                style={{
-                  background: "rgba(255,255,255,0.025)",
-                  border: `1px solid rgba(255,255,255,0.07)`,
-                  borderLeft: `3px solid ${exp.accentColor}40`,
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLDivElement).style.borderColor = `${exp.accentColor}50`;
-                  (e.currentTarget as HTMLDivElement).style.boxShadow = `0 0 32px ${exp.accentColor}0a, 0 8px 32px rgba(0,0,0,0.25)`;
-                  (e.currentTarget as HTMLDivElement).style.transform = "translateY(-2px)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.07)";
-                  (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
-                  (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
-                  (e.currentTarget as HTMLDivElement).style.borderLeft = `3px solid ${exp.accentColor}40`;
-                }}
-              >
-                {/* Badge + period */}
-                <div className="flex flex-wrap items-center gap-2 mb-3">
-                  <span className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full border font-mono ${exp.badgeColor}`}>
-                    {exp.type}
-                  </span>
-                  <span className="text-[11px] text-[#475569] font-mono">{exp.period}</span>
-                </div>
+              {/* Vertical divider */}
+              <div className="hidden lg:block" style={{ background: "rgba(0,0,0,0.08)" }} />
 
-                {/* Role */}
-                <h3 className="text-base sm:text-lg font-bold text-[#f1f5f9] mb-1 group-hover:text-[#3b82f6] transition-colors duration-200">
+              {/* Right: content */}
+              <div className="lg:pl-2">
+                <h3
+                  className="font-serif font-bold mb-1"
+                  style={{ fontSize: "clamp(1.4rem, 3vw, 2rem)", color: "#1A1714" }}
+                >
                   {exp.role}
                 </h3>
+                <p className="text-sm font-mono mb-5" style={{ color: "#C4472A" }}>
+                  {exp.company}
+                </p>
 
-                {/* Company */}
-                <div className="flex items-center gap-1.5 mb-4">
-                  <FiExternalLink size={11} className="text-[#475569] shrink-0" />
-                  <span className="text-sm text-[#64748b] font-medium">{exp.company}</span>
-                </div>
+                <ul className="space-y-3 mb-6">
+                  {exp.bullets.map((b) => (
+                    <li
+                      key={b}
+                      className="flex items-start gap-3 text-sm leading-relaxed"
+                      style={{ color: "#6B6560" }}
+                    >
+                      <span className="mt-[6px] shrink-0 font-mono text-xs" style={{ color: "#B8B2AA" }}>—</span>
+                      {b}
+                    </li>
+                  ))}
+                </ul>
 
-                {/* Description: paragraph or bullet list */}
-                {exp.description && (
-                  <p className="text-sm text-[#64748b] leading-relaxed mb-5">
-                    {exp.description}
-                  </p>
-                )}
-
-                {exp.bullets && (
-                  <ul className="mb-5 space-y-2">
-                    {exp.bullets.map((b) => (
-                      <li key={b} className="flex items-start gap-2.5 text-sm text-[#64748b] leading-relaxed">
-                        <span
-                          className="mt-[7px] w-1 h-1 rounded-full shrink-0"
-                          style={{ backgroundColor: exp.accentColor }}
-                        />
-                        {b}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-
-                {/* Tech chips */}
                 <div className="flex flex-wrap gap-2">
                   {exp.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="text-[11px] px-2.5 py-0.5 rounded-md font-mono"
-                      style={{
-                        background: "rgba(255,255,255,0.04)",
-                        border: "1px solid rgba(255,255,255,0.08)",
-                        color: "#64748b",
-                      }}
-                    >
-                      {t}
-                    </span>
+                    <span key={t} className="tech-chip">{t}</span>
                   ))}
                 </div>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );

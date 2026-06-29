@@ -1,10 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import {
-  FaEnvelope, FaGithub, FaArrowRight,
-  FaPaperPlane, FaCheckCircle, FaExclamationCircle,
-} from "react-icons/fa";
+import { FaEnvelope, FaGithub, FaArrowRight } from "react-icons/fa";
 import { useInView } from "../hooks/useInView";
 
 const FORMSPREE_ENDPOINT = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT ?? "";
@@ -15,32 +12,22 @@ const LINKS = [
     label: "Email",
     value: "ferninjericho07@gmail.com",
     href: "mailto:ferninjericho07@gmail.com",
-    color: "#3b82f6",
   },
   {
     Icon: FaGithub,
     label: "GitHub",
     value: "github.com/horror02",
     href: "https://github.com/horror02",
-    color: "#e2e8f0",
     external: true,
   },
 ];
 
 type Status = "idle" | "sending" | "sent" | "error";
 
-const inputBase =
-  "w-full px-4 py-3 rounded-xl text-sm text-[#f1f5f9] placeholder:text-[#475569] focus:outline-none transition-all duration-200 font-mono";
-
-const inputStyle = {
-  background: "rgba(255,255,255,0.03)",
-  border: "1px solid rgba(255,255,255,0.08)",
-};
-
 export default function Contact() {
   const { ref, inView } = useInView(0.1);
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState<Status>("idle");
+  const [form, setForm]       = useState({ name: "", email: "", message: "" });
+  const [status, setStatus]   = useState<Status>("idle");
   const [focused, setFocused] = useState<string | null>(null);
 
   const set =
@@ -68,186 +55,201 @@ export default function Contact() {
     }
   };
 
-  const fieldStyle = (name: string) => ({
-    ...inputStyle,
-    borderColor: focused === name ? "rgba(59,130,246,0.5)" : "rgba(255,255,255,0.08)",
-    boxShadow: focused === name ? "0 0 0 3px rgba(59,130,246,0.08)" : "none",
+  const fieldStyle = (name: string): React.CSSProperties => ({
+    background: "rgba(0,0,0,0.03)",
+    border: `1px solid ${focused === name ? "rgba(196,71,42,0.5)" : "rgba(0,0,0,0.12)"}`,
+    boxShadow: focused === name ? "0 0 0 3px rgba(196,71,42,0.06)" : "none",
+    color: "#1A1714",
+    transition: "border-color 0.2s ease, box-shadow 0.2s ease",
+    borderRadius: "6px",
   });
 
-  return (
-    <section ref={ref} className="px-6 sm:px-10 lg:px-20 py-24 pb-32">
+  const inputClass = "w-full px-4 py-3 text-sm placeholder:text-[#B8B2AA] focus:outline-none";
 
+  return (
+    <section
+      id="contact"
+      ref={ref}
+      className="px-6 sm:px-10 lg:px-14 py-24 pb-32"
+      style={{ background: "#F5F0E8" }}
+    >
+      {/* Section header */}
       <div
-        className="flex items-center gap-4 mb-6 transition-all duration-700"
-        style={{
-          opacity: inView ? 1 : 0,
-          transform: inView ? "translateY(0)" : "translateY(20px)",
-        }}
+        className="flex items-center gap-4 mb-14 transition-all duration-700"
+        style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(16px)" }}
       >
-        <span className="section-number">03.</span>
-        <h2 className="text-2xl sm:text-3xl font-bold text-[#f1f5f9] whitespace-nowrap">
+        <span className="font-mono text-[0.65rem] tracking-[0.18em] uppercase" style={{ color: "#C4472A" }}>
+          03.
+        </span>
+        <h2 className="font-serif text-3xl sm:text-4xl font-bold" style={{ color: "#1A1714" }}>
           Contact
         </h2>
-        <div className="h-px flex-1 bg-gradient-to-r from-[#3b82f6]/30 to-transparent" />
+        <div className="h-px flex-1" style={{ background: "rgba(0,0,0,0.1)" }} />
       </div>
 
-      <p
-        className="text-sm text-[#64748b] mb-10 font-mono transition-all duration-700"
-        style={{
-          opacity: inView ? 1 : 0,
-          transform: inView ? "translateY(0)" : "translateY(12px)",
-          transitionDelay: inView ? "100ms" : "0ms",
-        }}
-      >
-        Open to new opportunities — feel free to reach out.
-      </p>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20">
 
-      <div className="flex flex-col sm:flex-row gap-3 mb-8">
-        {LINKS.map(({ Icon, label, value, href, color, external }, i) => (
-          <a
-            key={label}
-            href={href}
-            {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-            className="group flex items-center gap-4 flex-1 px-5 py-4 rounded-2xl transition-all duration-300 hover:-translate-y-0.5"
-            style={{
-              background: "rgba(255,255,255,0.025)",
-              border: "1px solid rgba(255,255,255,0.07)",
-              opacity: inView ? 1 : 0,
-              transform: inView ? "translateY(0)" : "translateY(16px)",
-              transitionDelay: inView ? `${200 + i * 100}ms` : "0ms",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.borderColor = `${color}30`;
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow = `0 0 24px ${color}0a`;
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,0.07)";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
-            }}
+        {/* Left */}
+        <div
+          className="transition-all duration-700"
+          style={{
+            opacity: inView ? 1 : 0,
+            transform: inView ? "translateY(0)" : "translateY(20px)",
+            transitionDelay: inView ? "100ms" : "0ms",
+          }}
+        >
+          <p
+            className="font-serif leading-snug mb-10"
+            style={{ fontSize: "clamp(1.5rem, 3vw, 2.25rem)", color: "#1A1714", fontStyle: "italic" }}
           >
-            <span
-              className="flex items-center justify-center w-10 h-10 rounded-xl shrink-0 transition-transform duration-200 group-hover:scale-105"
-              style={{ background: `${color}12`, border: `1px solid ${color}20` }}
-            >
-              <Icon size={16} color={color} />
-            </span>
-            <div className="min-w-0">
-              <p className="text-[10px] text-[#475569] font-mono uppercase tracking-widest">{label}</p>
-              <p className="text-xs font-semibold truncate text-[#94a3b8] group-hover:text-[#f1f5f9] transition-colors duration-200 mt-0.5">
-                {value}
-              </p>
-            </div>
-            <FaArrowRight
-              size={11}
-              className="ml-auto shrink-0 text-[#475569] group-hover:text-[#94a3b8] group-hover:translate-x-1 transition-all duration-200"
-            />
-          </a>
-        ))}
-      </div>
+            Open to new opportunities — feel free to reach out.
+          </p>
 
-      <div
-        className="rounded-2xl p-6 sm:p-8 transition-all duration-700"
-        style={{
-          background: "rgba(255,255,255,0.02)",
-          border: "1px solid rgba(255,255,255,0.07)",
-          opacity: inView ? 1 : 0,
-          transform: inView ? "translateY(0)" : "translateY(24px)",
-          transitionDelay: inView ? "380ms" : "0ms",
-        }}
-      >
-        {status === "sent" ? (
-          <div className="flex flex-col items-center justify-center py-14 gap-4 text-center">
-            <div
-              className="w-16 h-16 rounded-2xl flex items-center justify-center"
-              style={{ background: "rgba(59,130,246,0.1)", border: "1px solid rgba(59,130,246,0.2)" }}
-            >
-              <FaCheckCircle size={28} color="#3b82f6" />
-            </div>
-            <div>
-              <p className="font-semibold text-[#f1f5f9] mb-1">Message sent!</p>
-              <p className="text-sm text-[#64748b]">Thanks for reaching out — I&apos;ll get back to you soon.</p>
-            </div>
-            <button
-              onClick={() => setStatus("idle")}
-              className="mt-1 text-xs text-[#3b82f6] font-mono underline underline-offset-4 hover:opacity-70 transition-opacity"
-            >
-              Send another
-            </button>
+          <div className="space-y-3">
+            {LINKS.map(({ Icon, label, value, href, external }) => (
+              <a
+                key={label}
+                href={href}
+                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                className="flex items-center gap-4 p-4 rounded-lg transition-all duration-200 group"
+                style={{ border: "1px solid rgba(0,0,0,0.1)" }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(196,71,42,0.3)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(0,0,0,0.1)";
+                }}
+              >
+                <span
+                  className="flex items-center justify-center w-9 h-9 rounded-md shrink-0"
+                  style={{ background: "rgba(0,0,0,0.05)" }}
+                >
+                  <Icon size={14} style={{ color: "#6B6560" }} />
+                </span>
+                <div className="min-w-0">
+                  <p className="text-[10px] font-mono uppercase tracking-widest mb-0.5" style={{ color: "#B8B2AA" }}>
+                    {label}
+                  </p>
+                  <p className="text-sm truncate" style={{ color: "#1A1714" }}>
+                    {value}
+                  </p>
+                </div>
+                <FaArrowRight
+                  size={11}
+                  className="ml-auto shrink-0 transition-all duration-200 group-hover:translate-x-1"
+                  style={{ color: "#C4472A" }}
+                />
+              </a>
+            ))}
           </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div className="grid sm:grid-cols-2 gap-5">
-              <div className="space-y-2">
-                <label className="block text-[11px] font-mono text-[#475569] uppercase tracking-widest">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={form.name}
-                  onChange={set("name")}
-                  onFocus={() => setFocused("name")}
-                  onBlur={() => setFocused(null)}
-                  placeholder="Your name"
-                  className={inputBase}
-                  style={fieldStyle("name")}
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="block text-[11px] font-mono text-[#475569] uppercase tracking-widest">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  required
-                  value={form.email}
-                  onChange={set("email")}
-                  onFocus={() => setFocused("email")}
-                  onBlur={() => setFocused(null)}
-                  placeholder="your@email.com"
-                  className={inputBase}
-                  style={fieldStyle("email")}
-                />
-              </div>
-            </div>
+        </div>
 
-            <div className="space-y-2">
-              <label className="block text-[11px] font-mono text-[#475569] uppercase tracking-widest">
-                Message
-              </label>
-              <textarea
-                required
-                rows={5}
-                value={form.message}
-                onChange={set("message")}
-                onFocus={() => setFocused("message")}
-                onBlur={() => setFocused(null)}
-                placeholder="What's on your mind?"
-                className={`${inputBase} resize-none`}
-                style={fieldStyle("message")}
-              />
-            </div>
-
-            {status === "error" && (
-              <p className="flex items-center gap-2 text-sm text-red-400 font-mono">
-                <FaExclamationCircle size={14} />
-                Something went wrong — please try again.
+        {/* Right: Form */}
+        <div
+          className="transition-all duration-700"
+          style={{
+            opacity: inView ? 1 : 0,
+            transform: inView ? "translateY(0)" : "translateY(20px)",
+            transitionDelay: inView ? "220ms" : "0ms",
+          }}
+        >
+          {status === "sent" ? (
+            <div className="flex flex-col items-center justify-center py-16 gap-3 text-center">
+              <div
+                className="w-12 h-12 rounded-lg flex items-center justify-center text-xl"
+                style={{ background: "#1A1714", color: "#F5F0E8" }}
+              >
+                ✓
+              </div>
+              <p className="font-serif text-xl font-bold" style={{ color: "#1A1714" }}>Message sent!</p>
+              <p className="text-sm" style={{ color: "#6B6560" }}>
+                Thanks for reaching out — I'll get back to you soon.
               </p>
-            )}
+              <button
+                onClick={() => setStatus("idle")}
+                className="mt-2 text-xs font-mono underline underline-offset-4 hover:opacity-60 transition-opacity"
+                style={{ color: "#C4472A" }}
+              >
+                Send another
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label className="block text-[10px] font-mono uppercase tracking-widest" style={{ color: "#B8B2AA" }}>
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={form.name}
+                    onChange={set("name")}
+                    onFocus={() => setFocused("name")}
+                    onBlur={() => setFocused(null)}
+                    placeholder="Your name"
+                    className={inputClass}
+                    style={fieldStyle("name")}
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <label className="block text-[10px] font-mono uppercase tracking-widest" style={{ color: "#B8B2AA" }}>
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    value={form.email}
+                    onChange={set("email")}
+                    onFocus={() => setFocused("email")}
+                    onBlur={() => setFocused(null)}
+                    placeholder="you@email.com"
+                    className={inputClass}
+                    style={fieldStyle("email")}
+                  />
+                </div>
+              </div>
 
-            <button
-              type="submit"
-              disabled={status === "sending"}
-              className="group flex items-center gap-2.5 bg-[#3b82f6] hover:bg-[#2563eb] disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-xl text-sm transition-all duration-250 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#3b82f6]/25 active:scale-[0.98] cursor-pointer"
-            >
-              <FaPaperPlane
-                size={13}
-                className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
-              />
-              {status === "sending" ? "Sending…" : "Send Message"}
-            </button>
-          </form>
-        )}
+              <div className="space-y-1.5">
+                <label className="block text-[10px] font-mono uppercase tracking-widest" style={{ color: "#B8B2AA" }}>
+                  Message
+                </label>
+                <textarea
+                  required
+                  rows={5}
+                  value={form.message}
+                  onChange={set("message")}
+                  onFocus={() => setFocused("message")}
+                  onBlur={() => setFocused(null)}
+                  placeholder="What's on your mind?"
+                  className={`${inputClass} resize-none`}
+                  style={fieldStyle("message")}
+                />
+              </div>
+
+              {status === "error" && (
+                <p className="text-sm font-mono" style={{ color: "#C4472A" }}>
+                  Something went wrong — please try again.
+                </p>
+              )}
+
+              <button
+                type="submit"
+                disabled={status === "sending"}
+                className="flex items-center gap-2 font-semibold py-3 px-6 rounded-lg text-sm transition-all duration-200 hover:-translate-y-0.5 disabled:opacity-40 cursor-pointer"
+                style={{ background: "#1A1714", color: "#F5F0E8" }}
+                onMouseEnter={(e) =>
+                  ((e.currentTarget as HTMLButtonElement).style.background = "#2e2a27")
+                }
+                onMouseLeave={(e) =>
+                  ((e.currentTarget as HTMLButtonElement).style.background = "#1A1714")
+                }
+              >
+                {status === "sending" ? "Sending…" : "Send Message →"}
+              </button>
+            </form>
+          )}
+        </div>
       </div>
     </section>
   );
